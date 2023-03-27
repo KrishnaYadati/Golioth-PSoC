@@ -1,0 +1,43 @@
+# Copyright (c) 2021 Golioth, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+mainmenu "Golioth application options"
+
+if DNS_RESOLVER
+
+config DNS_SERVER_IP_ADDRESSES
+	default y
+
+config DNS_SERVER1
+	default "1.1.1.1"
+
+endif # DNS_RESOLVER
+
+if SETTINGS
+
+config SETTINGS_RUNTIME
+	default y
+
+config GOLIOTH_SAMPLE_SETTINGS_AUTOLOAD
+	default y
+
+config GOLIOTH_SAMPLE_SETTINGS_SHELL
+	default y
+
+endif # SETTINGS
+
+if HAS_ESPRESSIF_HAL
+
+config ESP_CLK_INIT_OVERRIDE
+	bool "Override ESP clock initialization"
+	default y
+	help
+	  Override weak ESP clock initialization `void esp_clk_init(void)` with
+	  empty definition.
+
+	  Enable this option when experiencing issues booting application after
+	  swap.
+
+endif # HAS_ESPRESSIF_HAL
+
+source "Kconfig.zephyr"
