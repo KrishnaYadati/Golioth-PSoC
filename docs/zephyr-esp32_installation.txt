@@ -1,0 +1,105 @@
+###Zephyr for ESP32
+
+#Install West:
+sudo apt update
+sudo apt install --no-install-recommends git cmake ninja-build gperf ccache dfu-util device-tree-compiler wget python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev
+
+#West requires CMake version 3.20.0 or higher, Check the version that your package manager installed:
+cmake --version
+cmake version 3.16.3
+
+#If you have an older version, Ubuntu 20.04 systems can add the Kitware repository which maintains the newest release:
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+sudo apt update
+sudo apt install cmake
+cmake --version
+
+#If the Kitware repository doesn't work for you (ie: your system is not running Ubuntu 20.04), you can build the stable version of CMake from source.We recommend creating a python3 virtual environment to avoid running into tooling incompatibilities.
+
+# Install globally
+pip3 install wheel
+pip3 install west
+
+#Install Golioth Zephyr SDK
+cd ~
+west init -m https://github.com/golioth/golioth-zephyr-sdk.git --mf west-zephyr.yml ~/golioth-zephyr-workspace
+cd golioth-zephyr-workspace
+west update
+
+#Tell west to automatically configure CMake:
+west zephyr-export
+
+#Install the remaining dependencies:
+pip3 install -r ~/golioth-zephyr-workspace/zephyr/scripts/requirements.txt
+
+#Installing & Unpacking the Zephyr SDK Toolchain
+cd ~
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.15.2/zephyr-sdk-0.15.2_linux-x86_64.tar.gz
+tar -xvf zephyr-sdk-0.15.2_linux-x86_64.tar.gz
+cd zephyr-sdk-0.15.2
+./setup.sh
+
+Answer 'y' to both of the questions asked during the setup process.
+
+#Install udev rules, which allow you to flash most Zephyr boards as a regular user:
+sudo cp ~/zephyr-sdk-0.15.2/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload
+
+#Install Espressif (ESP32) Binary Blobs:
+cd ~/golioth-zephyr-workspace
+west blobs fetch hal_espressif
+
+#Sample build:
+cd ~/golioth-zephyr-workspace/zephyr
+west build -b esp32 samples/basic/minimal -p
+
+#Flashing with samples:
+
+#Building hello
+#Samples can be found in the Zephyr SDK in the folder modules/lib/golioth/samples. We recommend running the commands below from the modules/lib/golioth folder.
+cd ~/golioth-zephyr-workspace/modules/lib/golioth
+
+#Open samples/hello/prj.conf in your editor of choice and add these fields:
+
+CONFIG_GOLIOTH_SAMPLE_WIFI_SSID="YOUR_NETWORK_NAME"
+CONFIG_GOLIOTH_SAMPLE_WIFI_PSK="YOUR_NETWORK_PW"
+
+CONFIG_GOLIOTH_SYSTEM_CLIENT_PSK_ID="DEVICE_CRED_ID"
+CONFIG_GOLIOTH_SYSTEM_CLIENT_PSK="DEVICE_PSK"
+
+#Set the PSK & PSK ID to match what was used during the provisioning step and the Wi-Fi network credentials to match your network.After saving, build the sample with the new settings applied.
+west build -b esp32 samples/hello -p
+
+#Flashing-Device:My Serial port is ttyUSB0 based on your port name use that
+west flash --esp-device=/dev/ttyUSB0
+
+#Verify with serial output:
+screen /dev/ttyUSB0 115200
+
+##########################################################################################################################################################################################
+This is an snippet from the serial console:
+
+[00:00:00.000,000] <dbg> golioth_hello.main: Start CoAP-client sample
+[00:00:00.000,000] <inf> golioth_hello: Initializing golioth client
+[00:00:00.000,000] <inf> golioth_hello: Golioth client initialized
+[00:00:00.000,000] <inf> golioth_hello: Sending hello! 0
+[00:00:00.000,000] <dbg> golioth_hello.main: Debug info! 1
+[00:00:00.000,000] <dbg> golioth_hello.func_1: Log 1: 1
+[00:00:00.000,000] <dbg> golioth_hello.func_2: Log 2: 1
+[00:00:00.000,000] <wrn> golioth_hello: Warn: 1
+[00:00:00.000,000] <err> golioth_hello: Err: 1
+[00:00:00.000,000] <inf> golioth_hello: Starting connect
+[00:00:00.000,000] <inf> golioth_hello: Client connected!
+[00:00:00.000,000] <inf> golioth_hello: Sending hello!1
+[00:00:00.000,000] <inf> golioth_hello: Sending hello!2
+
+###########################################################################################################################################################################################
+Now you can verify by logging into your golioth's account in "logs". 
+
+
+
+
+
+
+
