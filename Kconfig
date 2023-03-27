@@ -1,0 +1,14 @@
+# Kconfig - application configuration options
+
+# Copyright (c) 2021 Golioth, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+menu "Golioth options"
+
+rsource "samples/common/Kconfig.defconfig"
+
+rsource "logging/Kconfig"
+rsource "net/Kconfig"
+rsource "samples/common/Kconfig"
+
+endmenu
