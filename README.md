@@ -1,4 +1,4 @@
-# Golioth-Esp32
+# Golioth
 
 
 
