@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Golioth-Platform Overview}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Registration \046 Wizard}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Manage Devices}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Board Support Tiers}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Continuously Verified Boards}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Verified Boards}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Unverified Boards}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Golioth with Esp32}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Setup Esp-IDF for Esp32}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Setup Zephyr for Esp32}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Golioth with PSoC}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{ModusToolBox}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Install ModusToolBox}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Golioth Example project}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.4}{Compile and flash the Golioth App}{section.5}% 16

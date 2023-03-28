@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}\textbf {Introduction}}{1}{section.1}%
+\contentsline {section}{\numberline {2}\textbf {Golioth-Platform Overview}}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}\textbf {Registration \& Wizard}}{1}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}\textbf {Manage Devices}}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}\textbf {Board Support Tiers}}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}\textbf {Continuously Verified Boards}}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}\textbf {Verified Boards}}{2}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}\textbf {Unverified Boards}}{2}{subsection.3.3}%
+\contentsline {section}{\numberline {4}\textbf {Golioth with Esp32}}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}\textbf {Setup Esp-IDF for Esp32}}{2}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}\textbf {Setup Zephyr for Esp32}}{2}{subsection.4.2}%
+\contentsline {section}{\numberline {5}\textbf {Golioth with PSoC}}{3}{section.5}%
+\contentsline {subsection}{\numberline {5.1}\textbf {ModusToolBox}}{3}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}\textbf {Install ModusToolBox}}{3}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}\textbf {Golioth Example project}}{3}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}\textbf {Compile and flash the Golioth App}}{3}{subsection.5.4}%
